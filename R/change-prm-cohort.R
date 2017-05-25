@@ -4,7 +4,7 @@
 #' This function is used to help automate the calibration routine for ATLANTIS models.
 #'
 #' @inheritParams extract_prm
-#' @param select_acronyms Character vector of funtional groups which shall be read in.
+#' @param select_acronyms Character vector of functional groups which shall be read in.
 #' Names have to match the ones used in the *.prm file. Check column "Code" in
 #' "functionalGroups.csv" for clarification.
 #' @param roc Matrix of multiplication factors which shall be applied to the old set of parameters.
@@ -18,7 +18,7 @@
 #' @param relative Logical if TRUE values are changed relative to base values. If FALSE new values can
 #' be passed directly. Default is \code{TRUE}.
 #' @param save_to_disc Logical indicating if the resulting prm file should be overwritten
-#' (\code{TRUE}) or not (\code{FALSE}). Default is \code{TRUE}.
+#' (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @return parameterfile *.prm file with the new parameter values.
 #' @export
 #'

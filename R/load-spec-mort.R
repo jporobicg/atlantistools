@@ -38,7 +38,7 @@ load_spec_mort <- function(specmort, prm_run, fgs, convert_names = FALSE, versio
     }
   } else if (version_flag == 2) {
     mort <- load_txt(file = specmort, id_col = c("Time", "Group", "Cohort", "Stock"))
-    mort <- dplyr::rename_(mort, prey = ~group, agecl = ~cohort, pred = ~code)
+    mort <- dplyr::rename_(mort, pred = ~group, agecl = ~cohort, prey = ~code)
     if (any(sapply(mort[, "stock"], function(x) length(unique(x))) != 1)) {
       stop("Multiple stocks present. This is not covered by the current version of atlantistools. Please contact the package development team.")
     }
@@ -70,6 +70,10 @@ load_spec_mort <- function(specmort, prm_run, fgs, convert_names = FALSE, versio
 
   # Convert time
   mort$time <- convert_time(prm_run = prm_run, col = mort$time)
+
+  # For some weird reason putput rows with exact yearly output are duplicated...
+  # ***This will cause a potentially unnoticed bug when this issue in the output file gets fixed
+  mort <- agg_data(data = mort, groups = c("time", "pred", "agecl", "prey"), fun = mean)
 
   return(mort)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/calculate-biomass-spatial.R
 \name{calculate_biomass_spatial}
 \alias{calculate_biomass_spatial}
-\title{Calculate spatiallly explicit biomass (in [t]) for each group and ageclass per timestep.}
+\title{Calculate spatially explicit biomass (in [t]) for each group and ageclass per timestep.}
 \usage{
 calculate_biomass_spatial(nums, sn, rn, n, vol_dz, bio_conv, bps)
 }
@@ -36,8 +36,8 @@ Biomass in [t] is stored in column 'atoutput'.
 }
 \description{
 Calculate spatially explicit biomass time series for each group and ageclass within
-our model. Data is read in from 'output[...].nc'. Biomass for age based groups is calculated
-as (StructN [mgN] + ResN [mgN]) * Numbers [individuals]. Biomass for non age based groups is
+our model. Data is read in from 'output[...].nc'. Biomass for age-based groups is calculated
+as (StructN [mgN] + ResN [mgN]) * Numbers [individuals]. Biomass for non age-based groups is
 calculated as N [mgN] * volume [m^3] (sediment-dz [m] / volume [m^3] for epibenthic groups).
 mgN is converted to t based on the stettings in the biol.prm file. Simulation time steps
 are converted to time in years based on output timesteps given in run.prm.

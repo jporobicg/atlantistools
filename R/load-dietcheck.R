@@ -10,7 +10,7 @@
 #'
 #' @family load functions
 #' @export
-#' @return A \code{data.frame} in long format with the following coumn names:
+#' @return A \code{data.frame} in long format with the following column names:
 #'   time, pred, habitat, prey and atoutput (i.e., variable).
 #'
 #' @examples
@@ -69,7 +69,7 @@ load_dietcheck <- function(dietcheck, fgs, prm_run, convert_names = FALSE, repor
       print_diet <- print_diet %>%
         dplyr::mutate_(out = ~out / length(unique(diet$Time)) * 100) %>%
         #BJS predator -> colnames(diet)[2]
-        tidyr::spread_(key_col = colnames(diet)[2], value_col = "out") %>%
+        tidyr::spread_(data = ., key_col = colnames(diet)[2], value_col = "out") %>%
         as.data.frame()
 
 
@@ -84,11 +84,14 @@ load_dietcheck <- function(dietcheck, fgs, prm_run, convert_names = FALSE, repor
   #bjs change 4 to prey_col_start to remove magic number
   diet_long <- tidyr::gather_(data = diet, key_col = "prey", value_col = "atoutput",
                               gather_cols = names(diet)[prey_col_start:ncol(diet)])
-  names(diet_long)[names(diet_long) == colnames(diet)[2]] <- "pred" #bjs predator -> colnames(diet)[2]
+  names(diet_long)[names(diet_long) == "Predator"] <- "pred" #bjs predator -> colnames(diet)[2]
 
-  if(version_flag == 2) {
-
-    names(diet_long)[names(diet_long) == colnames(diet)[3]] <- "agecl" #bjs cohort -> colnames(diet)[3]
+  if (version_flag == 2) {
+    names(diet_long)[names(diet_long) == "Cohort"] <- "agecl" #bjs cohort -> colnames(diet)[3]
+    # Column Updated was added to runk code.
+    if ("Updated" %in% names(diet_long)) {
+      diet_long <- diet_long[-which(diet_long$prey == "Updated"), ]
+    }
   }
 
   names(diet_long) <- tolower(names(diet_long))

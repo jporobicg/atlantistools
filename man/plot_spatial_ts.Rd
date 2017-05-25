@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot-spatial-ts.R
 \name{plot_spatial_ts}
 \alias{plot_spatial_ts}
-\title{Visualise the spatial distribution per species and stanza combination.}
+\title{Visualize the spatial distribution per species and stanza combination.}
 \usage{
 plot_spatial_ts(bio_spatial, bgm_as_df, vol, select_species = NULL,
   ncol = 7, polygon_overview = 0.2)
@@ -13,7 +13,7 @@ layer and polygon. This dataframe should be generated with
 \code{\link{calculate_biomass_spatial}}. The columns of the dataframe have to
 be 'species', 'species_stanza', 'polygon', 'layer', 'time' and 'atoutput'.
 Column 'atoutput' is the biomass in tonnes. Please use \code{\link{combine_ages}}
-to transform an agebased dataframe to a stanza based dataframe.}
+to transform an age-based dataframe to a stanza based dataframe.}
 
 \item{bgm_as_df}{*.bgm file converted to a dataframe. Please use \code{\link{convert_bgm}}
 to convert your bgm-file to a dataframe with columns 'lat', 'long', 'inside_lat',
@@ -33,7 +33,7 @@ upper right corner of the plot. Default is \code{0.2}.}
 grob of 3 ggplot2 plots.
 }
 \description{
-Visualise the spatial distribution per species and stanza combination.
+Visualize the spatial distribution per species and stanza combination.
 }
 \examples{
 d <- system.file("extdata", "setas-model-new-trunk", package = "atlantistools")

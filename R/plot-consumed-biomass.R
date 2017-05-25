@@ -1,10 +1,10 @@
-#' Circle diagramm to visualise the consumed biomass for the whole system.
+#' Circle diagram to visualize the consumed biomass for the whole system.
 #'
 #' @param bio_consumed Consumed biomass of prey groups by predatorgroup and agecl in tonnes
 #' for each timestep and polygon. Dataframe with columns 'pred', 'agecl', 'polygon', 'time', 'prey'.
 #' Consumed biomass in [t] is stored in column 'atoutput'. Should be generated with
 #' \code{link{calculate_consumed_biomass}}.
-#' @param select_time Numeric value to control the simulation time in years to visualise.
+#' @param select_time Numeric value to control the simulation time in years to visualize.
 #' By default the start of the simulation is shown. Default is \code{NULL}.
 #' @param show Numeric value between 0 - 1 to control the amount of links shown. Default is \code{0.95}.
 #' Thus, the most important 95% of the total biomass flows are shown. The remaining interactions
@@ -101,7 +101,7 @@ plot_consumed_biomass <- function(bio_consumed, select_time = NULL, show = 0.95)
   # line 4: annotations outside the sectors are not plotted, but provides a track measures.
   # line 5: use big arrows, sort the chords left to right in each sector and plot the smallest chords first.
 
-  # Create space between x-axis ticks. In total 24 ticks for the whole circle --> every 15°
+  # Create space between x-axis ticks. In total 24 ticks for the whole circle --> every 15 degree.
   sectors <- sapply(circlize::get.all.sector.index(), circlize::get.cell.meta.data, name = "xlim")[2, ]
   tick_step <- sum(sectors) / 24
 

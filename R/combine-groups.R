@@ -4,7 +4,7 @@
 #' @param group_col Character string giving the name of the group column in `data`.
 #' @param groups Vector of character strings giving the grouping variables.
 #' @param combine_thresh Integer indicating the number of groups to display. Default is \code{15}.
-#' @return dataframe with groupgs combined to "Rest" if contribution is low.
+#' @return dataframe with groups combined to "Rest" if contribution is low.
 #' @export
 #' @family combine functions
 #'
@@ -30,7 +30,7 @@ combine_groups <- function(data,
   }
   imp_species <- comb_grps %>%
     dplyr::arrange_(~desc(atoutput)) %>%
-    dplyr::slice(1:(combine_thresh-1))
+    dplyr::slice(1:(combine_thresh - 1))
   imp_species$atoutput <- NULL
 
   # Now we have a dataframe with the most important species (the number is defined

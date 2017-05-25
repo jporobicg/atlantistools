@@ -1,17 +1,17 @@
-#' Visualise the spatial distribution per species and stanza combination.
+#' Visualize the spatial distribution per species and stanza combination.
 #'
 #' @param bio_spatial Biomass per group and stanza in tonnes for each timestep,
 #' layer and polygon. This dataframe should be generated with
 #' \code{\link{calculate_biomass_spatial}}. The columns of the dataframe have to
 #' be 'species', 'species_stanza', 'polygon', 'layer', 'time' and 'atoutput'.
 #' Column 'atoutput' is the biomass in tonnes. Please use \code{\link{combine_ages}}
-#' to transform an agebased dataframe to a stanza based dataframe.
+#' to transform an age-based dataframe to a stanza based dataframe.
 #' @param bgm_as_df *.bgm file converted to a dataframe. Please use \code{\link{convert_bgm}}
 #' to convert your bgm-file to a dataframe with columns 'lat', 'long', 'inside_lat',
 #' 'inside_long' and 'polygon'.
 #' @param select_species Character vector listing the species to plot. If no species are selected
 #' \code{NULL} (default) all available species are plotted.
-#' @param timesteps Integer giving the number of timesteps to visualise. Default is \code{2}.
+#' @param timesteps Integer giving the number of timesteps to visualize. Default is \code{2}.
 #' By default the start and end of the simulation is shown. In case
 #' timesteps > 2 equally spaced timesteps are added.
 #' @param polygon_overview numeric value between 0 and 1 indicating the size used to plot the polygon overview in the
@@ -29,6 +29,7 @@
 #' # stanzas with \code{\link{combine_ages}}.
 #' bio_spatial <- combine_ages(ref_bio_sp, grp_col = "species", agemat = ref_agemat)
 #'
+#' \dontrun{
 #' # Apply \code{\link{plot_spatial_box}}
 #' grobs <- plot_spatial_box(bio_spatial, bgm_as_df, timesteps = 3)
 #' gridExtra::grid.arrange(grobs[[1]])
@@ -36,12 +37,12 @@
 #'
 #' # use names() to select specific plots
 #' names(grobs)
+#' }
 #'
 #' # Plot specific species
 #' grobs <- plot_spatial_box(bio_spatial, bgm_as_df,
 #'                           select_species = "Shallow piscivorous fish", timesteps = 3)
 #' gridExtra::grid.arrange(grobs[[1]])
-#' gridExtra::grid.arrange(grobs[[2]])
 
 plot_spatial_box <- function(bio_spatial, bgm_as_df, select_species = NULL, timesteps = 2, polygon_overview = 0.2){
   # Check input dataframe!
