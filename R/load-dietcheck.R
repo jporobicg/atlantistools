@@ -78,7 +78,11 @@ load_dietcheck <- function(dietcheck, fgs, prm_run, convert_names = FALSE, repor
     }
   }
 
-  diet <- diet[!empty_rows, ]
+    diet <- diet[!empty_rows, ]
+    # Column Updated was added to runk code.
+    if ("Updated" %in% names(diet)) {
+        diet <- diet[, - which(names(diet) == "Updated")]
+    }
 
   # Convert to long dataframe and rename columns!
   #bjs change 4 to prey_col_start to remove magic number
@@ -88,10 +92,6 @@ load_dietcheck <- function(dietcheck, fgs, prm_run, convert_names = FALSE, repor
 
   if (version_flag == 2) {
     names(diet_long)[names(diet_long) == "Cohort"] <- "agecl" #bjs cohort -> colnames(diet)[3]
-    # Column Updated was added to runk code.
-    if ("Updated" %in% names(diet_long)) {
-      diet_long <- diet_long[-which(diet_long$prey == "Updated"), ]
-    }
   }
 
   names(diet_long) <- tolower(names(diet_long))
@@ -111,5 +111,3 @@ load_dietcheck <- function(dietcheck, fgs, prm_run, convert_names = FALSE, repor
 
   return(diet_long)
 }
-
-
